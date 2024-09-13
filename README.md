@@ -1,6 +1,6 @@
 # CAT Token Box
 
-This version is an update of the [CAT Token Box](https://github.com/CATProtocol/cat-token-box/) to avoid using a tracker (which required syncing transactions through a database). Now, the project connects directly to a Bitcoin node using RPC for transaction handling. Instead of the previous tracker method that required syncing a database of transactions, the node now only needs to sync to the latest block, which is faster as it doesn't involve syncing individual transactions. However, you need to run your own Bitcoin node (tutorial available [here](https://github.com/fractal-bitcoin/fractald-release)) and ensure it is synced to the latest block.
+This version is an update of the [CAT Token Box](https://github.com/CATProtocol/cat-token-box/) to avoid using a tracker (which required syncing transactions through a database). Now, the project connects directly to a Bitcoin node using RPC for transaction handling. Instead of the previous tracker method that required syncing a database of transactions, the node now only needs to sync to the latest block, which is faster as it doesn't involve syncing individual transactions. However, you need to run your own Bitcoin node and ensure it is synced to the latest block.
 
 ## Features
 
@@ -11,7 +11,7 @@ This version is an update of the [CAT Token Box](https://github.com/CATProtocol/
 ## Prerequisites
 
 - Node.js (>=20)
-- [Full Bitcoin Node with RPC access](https://github.com/fractal-bitcoin/fractald-release)
+- [Set up a Full Bitcoin Node with RPC access](https://github.com/impredmet/cat20-mint-guide): Follow this guide to set up your node on a VPS. It includes a script that handles everything for you. Once you reach step 3.1, your node will be ready, and you can use the VPS IP as the RPC IP for the CLI configuration. The username and password for the node's RPC should remain unchanged from the guide.
 
 ## Installation
 
