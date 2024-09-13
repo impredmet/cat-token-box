@@ -1,67 +1,75 @@
 # CAT Token Box
 
-A reference implementation of the `Covenant Attested Token (CAT)` protocol on BTC signet and Fractal, where `OP_CAT` is re-activated.
+This version is an update of the [CAT Token Box](https://github.com/CATProtocol/cat-token-box/) to avoid using a tracker (which required syncing transactions through a database). Now, the project connects directly to a Bitcoin node using RPC for transaction handling. Instead of the previous tracker method that required syncing a database of transactions, the node now only needs to sync to the latest block, which is faster as it doesn't involve syncing individual transactions. However, you need to run your own Bitcoin node (tutorial available [here](https://github.com/fractal-bitcoin/fractald-release)) and ensure it is synced to the latest block.
 
-## Out of the Box
+## Features
 
-There are three major packages implementing the protocol and tools for `CAT` out of the box.
-
-```bash
-packages
-├── cli
-├── common
-├── smartcontracts
-```
-
-- `smartcontracts`
-
-Smart contracts implementing the `CAT` protocol written in [sCrypt](https://github.com/sCrypt-Inc/scrypt-ts).
-
-- `cli`
-
-A `Command Line Interface (CLI)` tool that can `deploy` / `mint` / `transfer` `CAT` protocol tokens.
+- **No more tracker**: Syncs directly with the Bitcoin node for transaction handling, skipping the database sync previously required.
+- **Automatic fee fetching**: Fees are fetched directly from the Mempool API.
+- **Faster synchronization**: Since the node handles block syncing itself (instead of the previous method where a tracker used a database for transactions), you just need to make sure your node is synced to the latest block.
 
 ## Prerequisites
 
-- Node.js Environment
+- Node.js (>=20)
+- [Full Bitcoin Node with RPC access](https://github.com/fractal-bitcoin/fractald-release)
 
-Make sure you have `Node.js` >=20 and `yarn` installed.
+## Installation
 
-You can follow the guide [here](https://nodejs.org/en/download/package-manager) to install `Node.js`.
-
-Also, you can check its version use this command:
-
-```bash
-node -v
-```
-
-Use this command to install `yarn` if it's not installed:
+1. Clone the repository:
 
 ```bash
-npm i -g yarn
+git clone https://github.com/impredmet/cat-token-box.git
+cd cat-token-box
 ```
 
-- Full Node
-- Postgres Database
-
-## How to Run the Project
-
-### 1. Build the project
-
-Run this command under the project's root directory to build the whole project:
+2. Install the dependencies:
 
 ```bash
-yarn install && yarn build
+yarn install
+# or
+npm install
 ```
 
-## 2. Execute `CLI` commands
-
-After the noce syncs up to the latest block, you can execute all kinds of commands provided by the `cli` package to interact with `CAT` protocol tokens. Refer to [this document](./packages/cli/README.md) to see more details.
-
-## Development & Test
-
-Run this command under the root directory to run all tests from these packages:
+3. Build the project:
 
 ```bash
-turbo test
+yarn build
+# or
+npm run build
 ```
+
+4. Navigate to the CLI package:
+
+```bash
+cd packages/cli
+```
+
+5. Update the `config.json` file with the correct RPC URL, username, and password of your node.
+
+6. Create a new wallet:
+
+```bash
+yarn cli wallet create
+# or
+npm run cli wallet create
+```
+
+7. You can then modify the `wallet.json` with your own mnemonic to import an existing wallet.
+
+## Minting CAT Tokens
+
+Example command to mint a CAT token with an amount of 5:
+
+```bash
+yarn cli mint -i 45ee725c2c5993b3e4d308842d87e973bf1951f5f7a804b21e4dd964ecd12d6b_0 5
+# or
+npm run cli mint -i 45ee725c2c5993b3e4d308842d87e973bf1951f5f7a804b21e4dd964ecd12d6b_0 5
+```
+
+### License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+### Contributions
+
+Contributions are welcome! If you have ideas for improvements or new features, feel free to fork the repository and submit a pull request.
