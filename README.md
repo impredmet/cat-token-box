@@ -5,13 +5,13 @@ This version is an update of the [CAT Token Box](https://github.com/CATProtocol/
 ## Features
 
 - **No more tracker**: Syncs directly with the Bitcoin node for transaction handling, skipping the database sync previously required.
-- **Automatic fee fetching**: Fees are fetched directly from the Mempool API.
-- **Faster synchronization**: Since the node handles block syncing itself (instead of the previous method where a tracker used a database for transactions), you just need to make sure your node is synced to the latest block.
+- **Automatic fee fetching**: Fees are fetched directly from the node's Mempool.
+- **Faster synchronization**: The Bitcoin node only syncs the blocks, not individual transactions, which significantly speeds up the process.
 
 ## Prerequisites
 
 - Node.js (>=20)
-- [Set up a Full Bitcoin Node with RPC access](https://github.com/impredmet/cat20-mint-guide): Follow this guide to set up your node on a VPS. It includes a script that handles everything for you. Once you reach step 3.1, your node will be ready, and you can use the VPS IP as the RPC IP for the CLI configuration. The username and password for the node's RPC should remain unchanged from the guide.
+- [Set up a Full Bitcoin Node with RPC access](https://github.com/impredmet/cat20-mint-guide): Follow this guide to set up your node on a VPS. It includes a script that handles everything for you. Once you reach step 3.1 ("to install the environment and node, wait for the installation to finish"), your node will be fully set up, and you can use the VPS IP as the RPC IP for the CLI configuration. The username and password for the node's RPC should remain unchanged.
 
 ## Installation
 
